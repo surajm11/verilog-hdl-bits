@@ -1,0 +1,21 @@
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+
+   wire wire_high, wire_low, carry_lsb, cout;
+    wire [15:0] mux_out, sum_low, sum_high, sum_lsb;
+    
+    assign carry_lsb = 1'b0;
+    assign wire_high = 1'b1;
+    assign wire_low = 1'b0;
+    
+    add16 inst_lsb(.a(a[15:0]), .b(b[15:0]), .cin(carry_lsb), .sum(sum_lsb), .cout(cout));
+    add16 inst1_msb_low(.a(a[31:16]), .b(b[31:16]), .cin(wire_low), .sum(sum_low));
+    add16 inst2_msb_high(.a(a[31:16]), .b(b[31:16]), .cin(wire_high), .sum(sum_high));
+    
+    assign mux_out = cout?sum_high:sum_low;
+    assign sum = {mux_out, sum_lsb};
+    
+endmodule
