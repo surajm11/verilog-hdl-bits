@@ -1,0 +1,18 @@
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    input sub,
+    output [31:0] sum
+);
+    wire cout1;
+    wire [31:0] sum1;
+    wire [31:0] b_xored;
+    
+    assign b_xored = b^{32{sub}};
+
+    add16 lsb_inst(.a(a[15:0]), .b(b_xored[15:0]), .cin(sub), .sum(sum1[15:0]), .cout(cout1));
+    add16 msb_inst(.a(a[31:16]), .b(b_xored[31:16]), .cin(cout1), .sum(sum1[31:16]));
+    
+    assign sum = sum1;
+        
+endmodule
