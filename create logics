@@ -1,4 +1,13 @@
 logics to design 
+--------LOGIC-----------------------
+parametrise clk div codes ?
+combine even and odd clk division after that ?
+fractinal divison ?
+generate a full N bit adder using loop ?
+work on shift register logic ?
 
-generate a full N bit adder using loop
-work on shift register logic
+
+
+
+
+------------TESTBENCH---------------
